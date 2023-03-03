@@ -1,0 +1,56 @@
+{% extends 'nav.html' %}
+{% load static %}
+{% block title %} address page {% endblock title %}
+{% block content %}
+
+<div class="container my-5">
+    <div class="row">
+        <h3>welcome <span class="text-capitalize">{{ request.user }}</span></h3>
+
+    
+      <div class="col-sm-2 border-end">
+        <ul class="list_unstyled">
+            <li class="d-grid"><a href="{% url 'profile' %}" class="btn btn-primary">Profile</a></li>
+            <li class="d-grid "><a href="{% url 'address' %}" class="btn btn-info">Address</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-8 offset-sm-1">
+        <div class="row">
+            {% for ad in add %}
+            <div class="col-sm-6">
+                <div class="card m-2">
+                    <div class="card-body">
+                        <h3>Address {{ forloop.counter }}</h3>
+                        <p>Name :{{ ad.name }}</p>
+                        <p>Locality :{{ ad.locality }}</p>
+                        <p>Mobile : {{ ad.mobile }}</p>
+                        <p>City :{{ ad.city }}</p>
+                        <p>State :{{ ad.city }}</p>
+                        <p>Pincode :{{ ad.zipcode }}</p>
+                        <div class="col">
+                        <p class="text-center">
+                        
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-8 offset-sm-1">
+                            
+                                 
+                                   
+                                 
+                                     
+                                     <!-- <a href="" type="button" class="btn btn-danger">Delete</a> -->
+                                     <a href="{% url 'updateAddress' pk=ad.id %}" type="button" class="btn btn-success">Update</a>
+                                 </div>
+                                 
+                                    
+                             </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+</div>
+      
+{% endblock %}

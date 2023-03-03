@@ -1,0 +1,40 @@
+{% extends 'nav.html' %}
+{% load static %}
+{% block title %} category page {% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row my-3">
+        <div class="col-sm-6-offset-sm-3">
+            <form action="" method="POST" novalidate class="shadow p-5">
+                {% csrf_token %}
+                {% for f in form %}
+                {{ f.label_tag }}{{f}} <small  class="text-danger" >{{ f.errors|striptags }}</small><br>
+                {% endfor %}
+                <div class="col-md-12 text-center">
+                <input type="submit" value="submit" class="btn btn-success fw-bold text-center">
+                <small>Existing User ? <a href="{% url 'login' %}" class="text-danger">login</a></small>
+            </div>
+            {% if form.non_field_errors %}
+               {% for error in form.non_field_errors %}
+               <p class="alert alert-danger my-3">{{ errors }}</p>
+               {% endfor %}
+            {% endif %}
+            <!-- MESSEGES -->
+            {% if messages %}
+               {% for msg in messages %}
+            <div class="alert alert-{{ msg.tags }}" role = "alert">
+                {{ msg }}
+               {% endfor %}
+            {% endif %}
+
+            </div>
+
+        
+    </form>
+
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
